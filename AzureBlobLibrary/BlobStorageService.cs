@@ -1,16 +1,14 @@
 ﻿using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using SharedLayer;
 
 namespace AzureBlobLibrary;
-
 public class BlobStorageService : IBlobStorage
 {
     private readonly BlobServiceClient _blobServiceClient;
 
-    public BlobStorageService()
+    public BlobStorageService(BlobServiceClient blobServiceClient)
     {
-        _blobServiceClient = new BlobServiceClient(ConnectionStrings.AzureStorageConnectionString);
+        _blobServiceClient = blobServiceClient ?? throw new ArgumentNullException(nameof(blobServiceClient));
     }
 
     public async Task<string> UploadAsync(string containerName, string blobName, Stream content, string contentType = null, CancellationToken cancellationToken = default)

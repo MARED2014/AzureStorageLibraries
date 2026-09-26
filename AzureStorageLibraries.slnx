@@ -1,6 +1,6 @@
 <Solution>
   <Project Path="AzureBlobLibrary/AzureBlobLibrary.csproj" Id="9d45f5cf-3392-4d1f-a2b6-868564e18bcf" />
+  <Project Path="AzureQueueLibrary/AzureQueueLibrary.csproj" Id="d43befd9-d2a0-413a-9c55-2c1e211ad92a" />
   <Project Path="AzureTableLibrary/AzureTableLibrary.csproj" Id="9de1c4f7-2083-4a24-bb0b-b4395b1d9e1d" />
   <Project Path="EntityLayer/EntityLayer.csproj" Id="e8918784-d43c-4fbc-8f27-5f3cad6df4f7" />
-  <Project Path="SharedLayer/SharedLayer.csproj" Id="0422416f-56cd-4dbf-afbe-8e2fe7013d20" />
 </Solution>

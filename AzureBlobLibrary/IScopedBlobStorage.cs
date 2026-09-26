@@ -9,6 +9,5 @@ public interface IScopedBlobStorage
     Task<bool> DeleteAsync(string blobName, CancellationToken cancellationToken = default);
     Task<bool> ExistsAsync(string blobName, CancellationToken cancellationToken = default);
     string GetBlobUrl(string blobName);
-
-    Task<List<string>> ListBlobsAsync(string containerName, CancellationToken cancellationToken = default);
+    Task<List<string>> ListBlobsAsync(CancellationToken cancellationToken = default);
 }
