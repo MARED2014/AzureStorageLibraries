@@ -36,13 +36,13 @@ public class BlobStorageService : IBlobStorage
         return await UploadAsync(containerName, blobName, stream, contentType, cancellationToken);
     }
 
-    public async Task<Stream> DownloadAsync(string containerName, string blobName, CancellationToken cancellationToken = default)
+    public async Task<Stream?> DownloadAsync(string containerName, string blobName, CancellationToken cancellationToken = default)
     {
         var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
         BlobClient blobClient = containerClient.GetBlobClient(blobName);
 
         if (!await blobClient.ExistsAsync(cancellationToken))
-            return null!;
+            return null;
 
         BlobDownloadInfo download = await blobClient.DownloadAsync(cancellationToken);
         return download.Content;
@@ -72,20 +72,6 @@ public class BlobStorageService : IBlobStorage
         BlobClient blobClient = containerClient.GetBlobClient(blobName);
 
         return await blobClient.ExistsAsync(cancellationToken);
-    }
-
-    public async Task<bool> CreateContainerIfNotExistsAsync(string containerName, CancellationToken cancellationToken = default)
-    {
-        var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
-        var response = await containerClient.CreateIfNotExistsAsync(cancellationToken: cancellationToken);
-
-        return response != null;
-    }
-
-    public async Task<bool> DeleteContainerAsync(string containerName, CancellationToken cancellationToken = default)
-    {
-        var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
-        return await containerClient.DeleteIfExistsAsync(cancellationToken: cancellationToken);
     }
 
     public string GetBlobUrl(string containerName, string blobName)
