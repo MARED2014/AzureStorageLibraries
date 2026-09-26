@@ -31,4 +31,7 @@ public class ScopedBlobStorage : IScopedBlobStorage
 
     public string GetBlobUrl(string blobName)
         => _blobStorage.GetBlobUrl(_containerName, blobName);
+
+    public Task<List<string>> ListBlobsAsync(string containerName, CancellationToken cancellationToken = default)
+        => _blobStorage.ListBlobsAsync(_containerName, cancellationToken);
 }

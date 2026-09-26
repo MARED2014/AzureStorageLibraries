@@ -81,4 +81,17 @@ public class BlobStorageService : IBlobStorage
 
         return blobClient.Uri.ToString();
     }
+
+    public async Task<List<string>> ListBlobsAsync(string containerName, CancellationToken cancellationToken = default)
+    {
+        var containerClient = _blobServiceClient.GetBlobContainerClient(containerName);
+        var blobs = new List<string>();
+
+        await foreach (var blobItem in containerClient.GetBlobsAsync(cancellationToken: cancellationToken))
+        {
+            blobs.Add(blobItem.Name);
+        }
+
+        return blobs;
+    }
 }

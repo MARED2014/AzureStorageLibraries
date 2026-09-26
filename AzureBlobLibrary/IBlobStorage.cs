@@ -9,4 +9,5 @@ public interface IBlobStorage
     Task<bool> DeleteAsync(string containerName, string blobName, CancellationToken cancellationToken = default);
     Task<bool> ExistsAsync(string containerName, string blobName, CancellationToken cancellationToken = default);
     string GetBlobUrl(string containerName, string blobName);
+    Task<List<string>> ListBlobsAsync(string containerName, CancellationToken cancellationToken = default);
 }
